@@ -1,16 +1,28 @@
 # Solidity Template
 
-Uses
+This template has been forked fom https://github.com/amanusk/hardhat-template (MIT license).
 
-- [Hardhat](https://github.com/nomiclabs/hardhat): compile and run the smart contracts on a local development network
-- [TypeChain](https://github.com/ethereum-ts/TypeChain): generate TypeScript types for smart contracts
-- [Ethers](https://github.com/ethers-io/ethers.js/): renowned Ethereum library and wallet implementation
-- [Waffle](https://github.com/EthWorks/Waffle): tooling for writing comprehensive smart contract tests
-- [Solhint](https://github.com/protofire/solhint): linter
-- [Prettier Plugin Solidity](https://github.com/prettier-solidity/prettier-plugin-solidity): code formatter
+It includes an example of how to write an adapter for interacting with Ren's Gateway contracts, and a test file which sets up RenJS with the local contracts.
 
-This is a GitHub template, which means you can reuse it as many times as you want. You can do that by clicking the "Use this
-template" button at the top of the page.
+## Notes
+
+If you are replicating this set-up in an existing repository, here's some things to note:
+
+- Currently, the contracts in `@renproject/gateways-sol` need to be compiled with Solidity 0.5.17, do to some of its dependencies. Once these dependencies have been updated or replaced, `@renproject/gateways-sol` will also be updated. Hardhat has been configured to use two Solidity versions - "0.8.4" and "0.5.17".
+- Due to these same dependencies, there are version clashes in the npm dependency tree which require some version overrides. If using `yarn`, add the following to `package.json`:
+
+  ```json
+  "resolutions": {
+      "@resolver-engine/imports-fs": "^0.3.3",
+      "@ethersproject/bignumber": "^5.3.0"
+  },
+  ```
+
+---
+
+---
+
+**The rest of the README is part of the `amanusk/hardhat-template` template.**
 
 ## Usage
 
@@ -57,8 +69,3 @@ npx hardhat run --network rinkeby ./scripts/deploy.ts
 ```
 npx hardhat verify --network <network> <DEPLOYED_CONTRACT_ADDRESS> "Constructor argument 1"
 ```
-
-### Added plugins
-
-- Gas reporter [hardhat-gas-reporter](https://hardhat.org/plugins/hardhat-gas-reporter.html)
-- Etherscan [hardhat-etherscan](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html)
