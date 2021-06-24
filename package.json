@@ -15,8 +15,13 @@
     "@nomiclabs/hardhat-etherscan": "^2.1.2",
     "@nomiclabs/hardhat-ganache": "^2.0.0",
     "@nomiclabs/hardhat-waffle": "^2.0.0",
-    "@renproject/chains-ethereum": "^2.3.0",
-    "@renproject/ren": "^2.3.0",
+    "@renproject/chains-ethereum": "^2.4.3-alpha.0",
+    "@renproject/ren": "^2.4.3-alpha.0",
+    "@renproject/utils": "^2.4.3-alpha.0",
+    "@renproject/provider": "^2.4.3-alpha.0",
+    "@renproject/interfaces": "^2.4.3-alpha.0",
+    "@renproject/mock-provider": "^2.4.3-alpha.0",
+    "@renproject/rpc": "^2.4.3-alpha.0",
     "@typechain/ethers-v5": "^4.0.0",
     "@types/chai": "^4.2.18",
     "@types/mocha": "^8.2.2",
@@ -43,6 +48,6 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.1.0",
-    "@renproject/gateway-sol": "^1.0.5"
+    "@renproject/gateway-sol": "^1.0.10"
   }
 }
