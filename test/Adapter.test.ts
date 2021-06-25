@@ -2,7 +2,6 @@ import { ethers } from "hardhat";
 import chai from "chai";
 import { solidity } from "ethereum-waffle";
 import { Adapter__factory, GatewayFactory__factory, BasicAdapter__factory } from "../typechain";
-import BN from "bn.js";
 import BigNumber from "bignumber.js";
 
 // RenJS imports

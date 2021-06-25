@@ -29,7 +29,15 @@ If you are replicating this set-up in an existing repository, here's some things
 
 ---
 
+<br />
+
 **The rest of the README is part of the `amanusk/hardhat-template` template.**
+
+<br />
+
+---
+
+---
 
 ## Usage
 
@@ -47,14 +55,6 @@ Compile the smart contracts with Hardhat:
 
 ```sh
 $ yarn compile
-```
-
-### TypeChain
-
-Compile the smart contracts and generate TypeChain artifacts:
-
-```sh
-$ yarn build
 ```
 
 ### Test
@@ -76,3 +76,8 @@ npx hardhat run --network rinkeby ./scripts/deploy.ts
 ```
 npx hardhat verify --network <network> <DEPLOYED_CONTRACT_ADDRESS> "Constructor argument 1"
 ```
+
+### Added plugins
+
+- Gas reporter [hardhat-gas-reporter](https://hardhat.org/plugins/hardhat-gas-reporter.html)
+- Etherscan [hardhat-etherscan](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html)

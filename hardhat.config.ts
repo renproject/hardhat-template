@@ -7,11 +7,12 @@ dotenvConfig({ path: resolve(__dirname, "./.env") });
 import { HardhatUserConfig } from "hardhat/types";
 import { NetworkUserConfig } from "hardhat/types";
 
+import "@typechain/hardhat";
+import "@nomiclabs/hardhat-ethers";
 import "@nomiclabs/hardhat-waffle";
-import "hardhat-typechain";
+
 import "hardhat-gas-reporter";
 import "@nomiclabs/hardhat-etherscan";
-import "@nomiclabs/hardhat-ganache";
 
 const chainIds = {
   ganache: 1337,
@@ -26,6 +27,7 @@ const chainIds = {
 const MNEMONIC = process.env.MNEMONIC || "";
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "";
 const INFURA_API_KEY = process.env.INFURA_API_KEY || "";
+const ALCHEMY_KEY = process.env.ALCHEMY_KEY || "";
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -33,7 +35,7 @@ task("accounts", "Prints the list of accounts", async (args, hre) => {
   const accounts = await hre.ethers.getSigners();
 
   for (const account of accounts) {
-    console.log(await account.address);
+    console.log(await account.getAddress());
   }
 });
 
@@ -65,6 +67,7 @@ const config: HardhatUserConfig = {
       allowUnlimitedContractSize: true,
       blockGasLimit: 0x1fffffffffffff,
     },
+    mainnet: createTestnetConfig("mainnet"),
     goerli: createTestnetConfig("goerli"),
     kovan: createTestnetConfig("kovan"),
     rinkeby: createTestnetConfig("rinkeby"),
@@ -87,6 +90,10 @@ const config: HardhatUserConfig = {
     currency: "USD",
     gasPrice: 100,
     // enabled: process.env.REPORT_GAS ? true : false,
+  },
+  typechain: {
+    outDir: "typechain",
+    target: "ethers-v5",
   },
 };
 
