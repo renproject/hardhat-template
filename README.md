@@ -8,6 +8,13 @@ It includes an example of how to write an adapter for interacting with Ren's Gat
 
 If you are replicating this set-up in an existing repository, here's some things to note:
 
+- The contract `GatewayFactory` used in the tests requires the following hardhat config in the `hardhat` network:
+
+```js
+      allowUnlimitedContractSize: true,
+      blockGasLimit: 0x1fffffffffffff,
+```
+
 - Currently, the contracts in `@renproject/gateways-sol` need to be compiled with Solidity 0.5.17, do to some of its dependencies. Once these dependencies have been updated or replaced, `@renproject/gateways-sol` will also be updated. Hardhat has been configured to use two Solidity versions - "0.8.4" and "0.5.17".
 - Due to these same dependencies, there are version clashes in the npm dependency tree which require some version overrides. If using `yarn`, add the following to `package.json`:
 
