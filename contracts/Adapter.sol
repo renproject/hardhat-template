@@ -9,7 +9,7 @@ import {
 contract Adapter {
     IGatewayRegistry public registry;
 
-    event Deposit(uint256 _amount, bytes _msg);
+    event Deposit(uint256 _amount, bytes _msg, uint256 _notInPayload);
     event Withdrawal(bytes _to, uint256 _amount, bytes _msg);
 
     constructor(IGatewayRegistry _registry) {
@@ -19,6 +19,7 @@ contract Adapter {
     function deposit(
         // Parameters from users
         bytes calldata _msg,
+        uint256 _notInPayload,
         // Parameters from Darknodes
         uint256 _amount,
         bytes32 _nHash,
@@ -32,7 +33,7 @@ contract Adapter {
                 _nHash,
                 _sig
             );
-        emit Deposit(mintAmount, _msg);
+        emit Deposit(mintAmount, _msg, _notInPayload);
     }
 
     function withdraw(

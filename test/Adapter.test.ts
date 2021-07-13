@@ -95,6 +95,14 @@ describe("Token", () => {
               type: "bytes",
               value: Buffer.from(`Depositing ${amount} BTC`),
             },
+            {
+              name: "_notInPayload",
+              type: "uint256",
+              // This parameter won't be included in the payload hash, which
+              // means that it can be set when the mint is ready to be submitted.
+              notInPayload: true,
+              value: 0, // default value
+            },
           ],
         }),
       });
@@ -110,7 +118,10 @@ describe("Token", () => {
           try {
             await deposit.confirmed();
             await deposit.signed();
-            await deposit.mint();
+            await deposit.mint({
+              // Override value of `_notInPayload`.
+              _notInPayload: 1,
+            });
             resolve();
           } catch (error) {
             reject(error);
