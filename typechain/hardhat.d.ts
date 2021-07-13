@@ -13,21 +13,157 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "AccessControl",
+      name: "Context",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.AccessControl__factory>;
+    ): Promise<Contracts.Context__factory>;
+    getContractFactory(
+      name: "GSNRecipient",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.GSNRecipient__factory>;
+    getContractFactory(
+      name: "IRelayHub",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IRelayHub__factory>;
+    getContractFactory(
+      name: "IRelayRecipient",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IRelayRecipient__factory>;
+    getContractFactory(
+      name: "Ownable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Ownable__factory>;
     getContractFactory(
       name: "ERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ERC20__factory>;
     getContractFactory(
+      name: "ERC20Detailed",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20Detailed__factory>;
+    getContractFactory(
       name: "IERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
-      name: "TestToken",
+      name: "BaseAdminUpgradeabilityProxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.TestToken__factory>;
+    ): Promise<Contracts.BaseAdminUpgradeabilityProxy__factory>;
+    getContractFactory(
+      name: "BaseUpgradeabilityProxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BaseUpgradeabilityProxy__factory>;
+    getContractFactory(
+      name: "InitializableAdminUpgradeabilityProxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.InitializableAdminUpgradeabilityProxy__factory>;
+    getContractFactory(
+      name: "InitializableUpgradeabilityProxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.InitializableUpgradeabilityProxy__factory>;
+    getContractFactory(
+      name: "Proxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Proxy__factory>;
+    getContractFactory(
+      name: "UpgradeabilityProxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.UpgradeabilityProxy__factory>;
+    getContractFactory(
+      name: "BasicAdapter",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BasicAdapter__factory>;
+    getContractFactory(
+      name: "ERC20WithPermit",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20WithPermit__factory>;
+    getContractFactory(
+      name: "ERC20WithRate",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20WithRate__factory>;
+    getContractFactory(
+      name: "GatewayFactory",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.GatewayFactory__factory>;
+    getContractFactory(
+      name: "GatewayRegistry",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.GatewayRegistry__factory>;
+    getContractFactory(
+      name: "IERC20Standard",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Standard__factory>;
+    getContractFactory(
+      name: "IBurnGateway",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IBurnGateway__factory>;
+    getContractFactory(
+      name: "IGateway",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IGateway__factory>;
+    getContractFactory(
+      name: "IMintGateway",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IMintGateway__factory>;
+    getContractFactory(
+      name: "IGatewayRegistry",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IGatewayRegistry__factory>;
+    getContractFactory(
+      name: "BCHGateway",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BCHGateway__factory>;
+    getContractFactory(
+      name: "BTCGateway",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BTCGateway__factory>;
+    getContractFactory(
+      name: "MintGatewayLogicV1",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MintGatewayLogicV1__factory>;
+    getContractFactory(
+      name: "MintGatewayStateV1",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MintGatewayStateV1__factory>;
+    getContractFactory(
+      name: "ZECGateway",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ZECGateway__factory>;
+    getContractFactory(
+      name: "MintGatewayLogicV2",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MintGatewayLogicV2__factory>;
+    getContractFactory(
+      name: "MintGatewayProxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MintGatewayProxy__factory>;
+    getContractFactory(
+      name: "MintGatewayStateV2",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MintGatewayStateV2__factory>;
+    getContractFactory(
+      name: "RenERC20LogicV1",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.RenERC20LogicV1__factory>;
+    getContractFactory(
+      name: "RenERC20Proxy",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.RenERC20Proxy__factory>;
+    getContractFactory(
+      name: "Claimable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Claimable__factory>;
+    getContractFactory(
+      name: "CanReclaimTokens",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.CanReclaimTokens__factory>;
+    getContractFactory(
+      name: "LinkedList",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.LinkedList__factory>;
+    getContractFactory(
+      name: "Adapter",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Adapter__factory>;
 
     // default types
     getContractFactory(
