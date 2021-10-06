@@ -71,12 +71,13 @@ describe("Token", () => {
     it("Should mint some tokens", async () => {
       const [_, user] = await ethers.getSigners();
 
+      const decimals = Bitcoin.assetDecimals(Bitcoin.asset);
+
       // Use random amount.
-      const btcAmount = Math.random();
+      const btcAmount = new BigNumber(Math.random()).decimalPlaces(decimals);
       // Shift the amount by the asset's decimals (8 for BTC).
       const satsAmount = new BigNumber(btcAmount)
-        .times(new BigNumber(10).exponentiatedBy(Bitcoin.assetDecimals(Bitcoin.asset)))
-        .integerValue(BigNumber.ROUND_DOWN);
+        .times(new BigNumber(10).exponentiatedBy(decimals));
 
       // MockProvider doesn't yet return fee details.
       const fixedFee = 1000; // sats
@@ -101,13 +102,13 @@ describe("Token", () => {
             {
               name: "_msg",
               type: "bytes",
-              value: Buffer.from(`Depositing ${btcAmount} BTC`),
+              value: Buffer.from(`Depositing ${btcAmount.toFixed()} BTC`),
             },
           ],
         }),
       });
 
-      // Mock deposit.
+      // Mock deposit. Currently must be passed in as a number.
       Bitcoin.addUTXO(mint.gatewayAddress!, satsAmount.toNumber());
 
       const balanceBefore = await adapter.balance();
