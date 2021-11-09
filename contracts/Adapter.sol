@@ -7,7 +7,7 @@ import { IGatewayRegistry } from "@renproject/gateway-sol/contracts/Gateway/inte
 contract Adapter {
     IGatewayRegistry public registry;
 
-    event Deposit(uint256 _amount);
+    event Deposit(uint256 _amount, bytes _msg);
     event Withdrawal(bytes _to, uint256 _amount, bytes _msg);
 
     constructor(IGatewayRegistry _registry) {
@@ -25,7 +25,8 @@ contract Adapter {
     ) external {
         bytes32 pHash = keccak256(abi.encode(_msg));
         uint256 mintAmount = registry.getGatewayBySymbol("BTC").mint(pHash, _amount, _nHash, _sig);
-        emit Deposit(mintAmount);
+        emit Deposit(mintAmount, _msg);
+        console.log("Value of '_msg':", string(_msg));
     }
 
     function withdraw(

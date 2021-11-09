@@ -72,10 +72,12 @@ describe("Token", () => {
     it("Should mint some tokens", async () => {
       const [_, user] = await ethers.getSigners();
 
-      // Use random amount, multiplied by the asset's decimals.
-      const amount = new BigNumber(Math.random())
-        .times(new BigNumber(10).exponentiatedBy(Bitcoin.assetDecimals(Bitcoin.asset)))
-        .integerValue(BigNumber.ROUND_DOWN);
+      const decimals = Bitcoin.assetDecimals(Bitcoin.asset);
+
+      // Use random amount.
+      const btcAmount = new BigNumber(Math.random()).decimalPlaces(decimals);
+      // Shift the amount by the asset's decimals (8 for BTC).
+      const satsAmount = new BigNumber(btcAmount).times(new BigNumber(10).exponentiatedBy(decimals));
 
       // MockProvider doesn't yet return fee details.
       const fixedFee = 1000; // sats
@@ -88,7 +90,7 @@ describe("Token", () => {
         from: Bitcoin,
         // If you change this to another chain, you also have to change the
         // chain name passed to `gatewayFactory` above.
-        to: Ethereum({ provider: user.provider as any, signer: user }, network).Contract({
+        to: Ethereum({ provider: user.provider as any, signer: user as any }, network).Contract({
           // The contract we want to interact with
           sendTo: adapter.address,
 
@@ -100,14 +102,14 @@ describe("Token", () => {
             {
               name: "_msg",
               type: "bytes",
-              value: Buffer.from(`Depositing ${amount} BTC`),
+              value: Buffer.from(`Depositing ${btcAmount.toFixed()} BTC`),
             },
           ],
         }),
       });
 
-      // Mock deposit.
-      Bitcoin.addUTXO(mint.gatewayAddress!, amount.toNumber());
+      // Mock deposit. Currently must be passed in as a number.
+      Bitcoin.addUTXO(mint.gatewayAddress!, satsAmount.toNumber());
 
       const balanceBefore = await adapter.balance();
 
@@ -128,7 +130,7 @@ describe("Token", () => {
 
       // Check that the balance of the contract increased by the expected amount.
       const balanceAfter = await adapter.balance();
-      const expected = amount
+      const expected = satsAmount
         .minus(fixedFee)
         .times(1 - percentFee / 10000)
         .integerValue(BigNumber.ROUND_UP);
@@ -137,6 +139,9 @@ describe("Token", () => {
   });
 });
 
+// RenJS's Ethereum class can point to a custom network by providing a
+// `EthereumConfig` object. `LocalEthereumNetwork` creates the config for
+// Hardhat's local network.
 const LocalEthereumNetwork = (networkID: number, gatewayRegistry: string, basicAdapter: string): EthereumConfig => ({
   name: "hardhat",
   chain: "hardhat",
