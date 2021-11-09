@@ -1,14 +1,20 @@
-import { ethers } from "hardhat";
+import BigNumber from "bignumber.js";
 import chai from "chai";
 import { solidity } from "ethereum-waffle";
-import { Adapter__factory, GatewayFactory__factory, BasicAdapter__factory, Adapter } from "../typechain";
-import BigNumber from "bignumber.js";
+import { ethers } from "hardhat";
 
+import { Ethereum, EthereumConfig } from "@renproject/chains-ethereum";
 // RenJS imports
-import { MockProvider, MockChain } from "@renproject/mock-provider";
+import { MockChain, MockProvider } from "@renproject/mock-provider";
 import RenJS from "@renproject/ren";
 import { RenVMProvider } from "@renproject/rpc/build/main/v2";
-import { Ethereum, EthereumConfig } from "@renproject/chains-ethereum";
+
+import {
+    Adapter,
+    Adapter__factory,
+    BasicAdapter__factory,
+    GatewayFactory__factory,
+} from "../typechain";
 
 chai.use(solidity);
 const { expect } = chai;
@@ -31,8 +37,9 @@ describe("Token", () => {
     renJS = new RenJS(new RenVMProvider("testnet", mockRenVMProvider));
 
     // Set up mock Bitcoin chain.
-    Bitcoin = new MockChain();
+    Bitcoin = new MockChain("BTC");
     mockRenVMProvider.registerChain(Bitcoin);
+    mockRenVMProvider.registerAsset(Bitcoin.asset);
 
     // Get mint authority from mock provider.
     const mintAuthority = mockRenVMProvider.mintAuthority();
@@ -81,7 +88,7 @@ describe("Token", () => {
         from: Bitcoin,
         // If you change this to another chain, you also have to change the
         // chain name passed to `gatewayFactory` above.
-        to: Ethereum(user.provider! as any, user, network).Contract({
+        to: Ethereum({ provider: user.provider as any, signer: user }, network).Contract({
           // The contract we want to interact with
           sendTo: adapter.address,
 
@@ -113,6 +120,7 @@ describe("Token", () => {
             await deposit.mint();
             resolve();
           } catch (error) {
+            console.error(error);
             reject(error);
           }
         });
@@ -129,13 +137,18 @@ describe("Token", () => {
   });
 });
 
-const LocalEthereumNetwork = (networkID: number, gatewayRegistry: string, basicAdapter: string) => ({
+const LocalEthereumNetwork = (networkID: number, gatewayRegistry: string, basicAdapter: string): EthereumConfig => ({
   name: "hardhat",
   chain: "hardhat",
   chainLabel: "Hardhat",
   isTestnet: true,
   networkID,
   infura: "",
+  publicProvider: () => "",
+  explorer: {
+    address: () => "",
+    transaction: () => "",
+  },
   etherscan: "",
   addresses: {
     GatewayRegistry: gatewayRegistry,

@@ -1,15 +1,13 @@
-//SPDX-License-Identifier: MIT  
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
-import {
-    IGatewayRegistry
-} from "@renproject/gateway-sol/contracts/Gateway/interfaces/IGatewayRegistry.sol";
+import { IGatewayRegistry } from "@renproject/gateway-sol/contracts/Gateway/interfaces/IGatewayRegistry.sol";
 
 contract Adapter {
     IGatewayRegistry public registry;
 
-    event Deposit(uint256 _amount, bytes _msg);
+    event Deposit(uint256 _amount);
     event Withdrawal(bytes _to, uint256 _amount, bytes _msg);
 
     constructor(IGatewayRegistry _registry) {
@@ -18,6 +16,7 @@ contract Adapter {
 
     function deposit(
         // Parameters from users
+        // uint256 version,
         bytes calldata _msg,
         // Parameters from Darknodes
         uint256 _amount,
@@ -25,14 +24,8 @@ contract Adapter {
         bytes calldata _sig
     ) external {
         bytes32 pHash = keccak256(abi.encode(_msg));
-        uint256 mintAmount =
-            registry.getGatewayBySymbol("BTC").mint(
-                pHash,
-                _amount,
-                _nHash,
-                _sig
-            );
-        emit Deposit(mintAmount, _msg);
+        uint256 mintAmount = registry.getGatewayBySymbol("BTC").mint(pHash, _amount, _nHash, _sig);
+        emit Deposit(mintAmount);
     }
 
     function withdraw(
@@ -40,8 +33,7 @@ contract Adapter {
         bytes calldata _to,
         uint256 _amount
     ) external {
-        uint256 shiftedOutAmount =
-            registry.getGatewayBySymbol("BTC").burn(_to, _amount);
+        uint256 shiftedOutAmount = registry.getGatewayBySymbol("BTC").burn(_to, _amount);
         emit Withdrawal(_to, shiftedOutAmount, _msg);
     }
 

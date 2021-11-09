@@ -165,6 +165,197 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Adapter__factory>;
 
+    getContractAt(
+      name: "Context",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Context>;
+    getContractAt(
+      name: "GSNRecipient",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.GSNRecipient>;
+    getContractAt(
+      name: "IRelayHub",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IRelayHub>;
+    getContractAt(
+      name: "IRelayRecipient",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IRelayRecipient>;
+    getContractAt(
+      name: "Ownable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Ownable>;
+    getContractAt(
+      name: "ERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20>;
+    getContractAt(
+      name: "ERC20Detailed",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20Detailed>;
+    getContractAt(
+      name: "IERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20>;
+    getContractAt(
+      name: "BaseAdminUpgradeabilityProxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BaseAdminUpgradeabilityProxy>;
+    getContractAt(
+      name: "BaseUpgradeabilityProxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BaseUpgradeabilityProxy>;
+    getContractAt(
+      name: "InitializableAdminUpgradeabilityProxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.InitializableAdminUpgradeabilityProxy>;
+    getContractAt(
+      name: "InitializableUpgradeabilityProxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.InitializableUpgradeabilityProxy>;
+    getContractAt(
+      name: "Proxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Proxy>;
+    getContractAt(
+      name: "UpgradeabilityProxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.UpgradeabilityProxy>;
+    getContractAt(
+      name: "BasicAdapter",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BasicAdapter>;
+    getContractAt(
+      name: "ERC20WithPermit",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20WithPermit>;
+    getContractAt(
+      name: "ERC20WithRate",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20WithRate>;
+    getContractAt(
+      name: "GatewayFactory",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.GatewayFactory>;
+    getContractAt(
+      name: "GatewayRegistry",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.GatewayRegistry>;
+    getContractAt(
+      name: "IERC20Standard",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Standard>;
+    getContractAt(
+      name: "IBurnGateway",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IBurnGateway>;
+    getContractAt(
+      name: "IGateway",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IGateway>;
+    getContractAt(
+      name: "IMintGateway",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IMintGateway>;
+    getContractAt(
+      name: "IGatewayRegistry",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IGatewayRegistry>;
+    getContractAt(
+      name: "BCHGateway",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BCHGateway>;
+    getContractAt(
+      name: "BTCGateway",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BTCGateway>;
+    getContractAt(
+      name: "MintGatewayLogicV1",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MintGatewayLogicV1>;
+    getContractAt(
+      name: "MintGatewayStateV1",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MintGatewayStateV1>;
+    getContractAt(
+      name: "ZECGateway",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ZECGateway>;
+    getContractAt(
+      name: "MintGatewayLogicV2",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MintGatewayLogicV2>;
+    getContractAt(
+      name: "MintGatewayProxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MintGatewayProxy>;
+    getContractAt(
+      name: "MintGatewayStateV2",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MintGatewayStateV2>;
+    getContractAt(
+      name: "RenERC20LogicV1",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.RenERC20LogicV1>;
+    getContractAt(
+      name: "RenERC20Proxy",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.RenERC20Proxy>;
+    getContractAt(
+      name: "Claimable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Claimable>;
+    getContractAt(
+      name: "CanReclaimTokens",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.CanReclaimTokens>;
+    getContractAt(
+      name: "LinkedList",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.LinkedList>;
+    getContractAt(
+      name: "Adapter",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Adapter>;
+
     // default types
     getContractFactory(
       name: string,
@@ -175,5 +366,10 @@ declare module "hardhat/types/runtime" {
       bytecode: ethers.utils.BytesLike,
       signer?: ethers.Signer
     ): Promise<ethers.ContractFactory>;
+    getContractAt(
+      nameOrAbi: string | any[],
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<ethers.Contract>;
   }
 }
