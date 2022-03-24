@@ -91,214 +91,212 @@ describe("Token", () => {
     polygonBridgeExample = await new BridgeExample__factory(deployer).deploy(polygonNetwork.addresses.GatewayRegistry);
   });
 
-  describe("", async () => {
-    it("Should mint some tokens", async () => {
-      {
-        const [_, user] = await ethers.getSigners();
+  describe("BridgeExample", async () => {
+    it("deposit", async () => {
+      const [_, user] = await ethers.getSigners();
 
-        if (!user.provider) {
-          throw new Error(`User has no connected provider.`);
-        }
-
-        const ethereum = new Ethereum({ network: ethereumNetwork, provider: user.provider, signer: user });
-        mockRenVMProvider.registerChain(ethereum);
-        renJS.withChains(ethereum);
-
-        const polygon = new Polygon({ network: polygonNetwork, provider: user.provider, signer: user });
-        mockRenVMProvider.registerChain(polygon);
-        renJS.withChains(polygon);
-
-        const decimals = bitcoin.assetDecimals(bitcoin.assets.default);
-
-        // Use random amount.
-        const tokenAmount = new BigNumber(Math.random()).decimalPlaces(decimals);
-        // Shift the amount by the asset's decimals (8 for BTC).
-        const satsAmount = new BigNumber(tokenAmount).times(new BigNumber(10).exponentiatedBy(decimals));
-
-        await dai.transfer(user.address, satsAmount.toFixed());
-
-        const asset = "DAI";
-
-        // Initialize RenJS lockAndMint.
-        const gateway = await renJS.gateway({
-          // Send BTC from the Bitcoin blockchain to the Ethereum blockchain.
-          asset,
-          from: ethereum.Account({ amount: satsAmount }),
-          // If you change this to another chain, you also have to change the
-          // chain name passed to `gatewayFactory` above.
-          to: polygon.Contract({
-            // The contract we want to interact with
-            to: polygonBridgeExample.address,
-
-            // The name of the function we want to call
-            method: "deposit",
-
-            // Specify that "deposit" requieres the amount, nHash and signature.
-            withRenParams: true,
-
-            // Arguments expected for calling `deposit`
-            params: [
-              { name: "asset", type: "string", value: asset },
-              {
-                name: "msg",
-                type: "bytes",
-                value: Buffer.from(`Depositing ${tokenAmount.toFixed()} ${asset}`),
-              },
-            ],
-          }),
-        });
-
-        // Mock deposit. Currently must be passed in as a number.
-        // bitcoin.addUTXO(mint.gatewayAddress!, satsAmount.toNumber());
-
-        for (const setup of Object.values(gateway.inSetup)) {
-          if (setup.submit) {
-            await setup.submit();
-          }
-          await setup.wait();
-        }
-
-        const balanceBefore = await polygonBridgeExample.balance(asset);
-
-        if (gateway.in && gateway.in.submit) {
-          await gateway.in.submit();
-        }
-
-        await gateway.in?.wait(1);
-
-        // Process the deposit, including the mint step.
-        await new Promise<void>((resolve, reject) => {
-          gateway.on("transaction", async tx => {
-            try {
-              await tx.in.wait(0);
-
-              // Submit to mock RenVM
-              await tx.renVM.submit();
-              await tx.renVM.wait();
-
-              if (tx.out.submit) {
-                await tx.out.submit();
-              }
-              await tx.out.wait(0);
-
-              resolve();
-            } catch (error) {
-              console.error(error);
-              reject(error);
-            }
-          });
-        });
-
-        // Check that the balance of the contract increased by the expected amount.
-        const balanceAfter = await polygonBridgeExample.balance(asset);
-        const expected = gateway.fees.estimateOutput(satsAmount);
-        expect(balanceAfter.sub(balanceBefore)).to.equal(expected.toFixed());
+      if (!user.provider) {
+        throw new Error(`User has no connected provider.`);
       }
 
-      {
-        const [_, user] = await ethers.getSigners();
+      const ethereum = new Ethereum({ network: ethereumNetwork, provider: user.provider, signer: user });
+      mockRenVMProvider.registerChain(ethereum);
+      renJS.withChains(ethereum);
 
-        if (!user.provider) {
-          throw new Error(`User has no connected provider.`);
+      const polygon = new Polygon({ network: polygonNetwork, provider: user.provider, signer: user });
+      mockRenVMProvider.registerChain(polygon);
+      renJS.withChains(polygon);
+
+      const decimals = bitcoin.assetDecimals(bitcoin.assets.default);
+
+      // Use random amount.
+      const tokenAmount = new BigNumber(Math.random()).decimalPlaces(decimals);
+      // Shift the amount by the asset's decimals (8 for BTC).
+      const satsAmount = new BigNumber(tokenAmount).times(new BigNumber(10).exponentiatedBy(decimals));
+
+      await dai.transfer(user.address, satsAmount.toFixed());
+
+      const asset = "DAI";
+
+      // Initialize RenJS lockAndMint.
+      const gateway = await renJS.gateway({
+        // Send BTC from the Bitcoin blockchain to the Ethereum blockchain.
+        asset,
+        from: ethereum.Account({ amount: satsAmount }),
+        // If you change this to another chain, you also have to change the
+        // chain name passed to `gatewayFactory` above.
+        to: polygon.Contract({
+          // The contract we want to interact with
+          to: polygonBridgeExample.address,
+
+          // The name of the function we want to call
+          method: "deposit",
+
+          // Specify that "deposit" requieres the amount, nHash and signature.
+          withRenParams: true,
+
+          // Arguments expected for calling `deposit`
+          params: [
+            { name: "asset", type: "string", value: asset },
+            {
+              name: "msg",
+              type: "bytes",
+              value: Buffer.from(`Depositing ${tokenAmount.toFixed()} ${asset}`),
+            },
+          ],
+        }),
+      });
+
+      // Mock deposit. Currently must be passed in as a number.
+      // bitcoin.addUTXO(mint.gatewayAddress!, satsAmount.toNumber());
+
+      for (const setup of Object.values(gateway.inSetup)) {
+        if (setup.submit) {
+          await setup.submit();
         }
-
-        const ethereum = new Ethereum({ network: ethereumNetwork, provider: user.provider, signer: user });
-        mockRenVMProvider.registerChain(ethereum);
-        renJS.withChains(ethereum);
-
-        const polygon = new Polygon({ network: polygonNetwork, provider: user.provider, signer: user });
-        mockRenVMProvider.registerChain(polygon);
-        renJS.withChains(polygon);
-
-        const asset = "DAI";
-
-        const decimals = bitcoin.assetDecimals(bitcoin.assets.default);
-
-        const satsAmount = new BigNumber((await polygonBridgeExample.balance(asset)).toString());
-        const tokenAmount = satsAmount.shiftedBy(-decimals);
-
-        // Initialize RenJS lockAndMint.
-        const gateway = await renJS.gateway({
-          asset,
-          from: polygon.Contract({
-            // The contract we want to interact with
-            to: polygonBridgeExample.address,
-
-            // The name of the function we want to call
-            method: "withdraw",
-
-            // Specify that "deposit" requieres the amount, nHash and signature.
-            withRenParams: false,
-
-            // Arguments expected for calling `deposit`
-            params: [
-              { name: "asset", type: "string", value: asset },
-              {
-                name: "msg",
-                type: "bytes",
-                value: Buffer.from(`Withdrawing ${tokenAmount.toFixed()} ${asset}`),
-              },
-              {
-                name: "to",
-                type: "bytes",
-                value: EVMParam.EVM_TO_ADDRESS_BYTES,
-              },
-              { name: "amount", type: "uint256", value: satsAmount.toFixed() },
-            ],
-          }),
-          to: ethereum.Account(),
-          // If you change this to another chain, you also have to change the
-          // chain name passed to `gatewayFactory` above.
-        });
-
-        // Mock deposit. Currently must be passed in as a number.
-        // bitcoin.addUTXO(mint.gatewayAddress!, satsAmount.toNumber());
-
-        for (const setup of Object.values(gateway.inSetup)) {
-          if (setup.submit) {
-            await setup.submit();
-          }
-          await setup.wait();
-        }
-
-        const balanceBefore = await polygonBridgeExample.balance(asset);
-
-        if (gateway.in && gateway.in.submit) {
-          await gateway.in.submit();
-        }
-
-        await gateway.in?.wait(1);
-
-        // Process the deposit, including the mint step.
-        await new Promise<void>((resolve, reject) => {
-          gateway.on("transaction", async tx => {
-            try {
-              await tx.in.wait(0);
-
-              // Submit to mock RenVM
-              await tx.renVM.submit();
-              await tx.renVM.wait();
-
-              if (tx.out.submit) {
-                await tx.out.submit();
-              }
-              await tx.out.wait(0);
-
-              resolve();
-            } catch (error) {
-              console.error(error);
-              reject(error);
-            }
-          });
-        });
-
-        // Check that the balance of the contract increased by the expected amount.
-        const balanceAfter = await polygonBridgeExample.balance(asset);
-        const expected = gateway.fees.estimateOutput(satsAmount);
-
-        // TODO: Fix MockProvider fees for releasing
-        // expect(balanceBefore.sub(balanceAfter)).to.equal(expected.toFixed());
+        await setup.wait();
       }
+
+      const balanceBefore = await polygonBridgeExample.balance(asset);
+
+      if (gateway.in && gateway.in.submit) {
+        await gateway.in.submit();
+      }
+
+      await gateway.in?.wait(1);
+
+      // Process the deposit, including the mint step.
+      await new Promise<void>((resolve, reject) => {
+        gateway.on("transaction", async tx => {
+          try {
+            await tx.in.wait(0);
+
+            // Submit to mock RenVM
+            await tx.renVM.submit();
+            await tx.renVM.wait();
+
+            if (tx.out.submit) {
+              await tx.out.submit();
+            }
+            await tx.out.wait(0);
+
+            resolve();
+          } catch (error) {
+            console.error(error);
+            reject(error);
+          }
+        });
+      });
+
+      // Check that the balance of the contract increased by the expected amount.
+      const balanceAfter = await polygonBridgeExample.balance(asset);
+      const expected = gateway.fees.estimateOutput(satsAmount);
+      expect(balanceAfter.sub(balanceBefore)).to.equal(expected.toFixed());
+    });
+
+    it("withdraw", async () => {
+      const [_, user] = await ethers.getSigners();
+
+      if (!user.provider) {
+        throw new Error(`User has no connected provider.`);
+      }
+
+      const ethereum = new Ethereum({ network: ethereumNetwork, provider: user.provider, signer: user });
+      mockRenVMProvider.registerChain(ethereum);
+      renJS.withChains(ethereum);
+
+      const polygon = new Polygon({ network: polygonNetwork, provider: user.provider, signer: user });
+      mockRenVMProvider.registerChain(polygon);
+      renJS.withChains(polygon);
+
+      const asset = "DAI";
+
+      const decimals = bitcoin.assetDecimals(bitcoin.assets.default);
+
+      const satsAmount = new BigNumber((await polygonBridgeExample.balance(asset)).toString());
+      const tokenAmount = satsAmount.shiftedBy(-decimals);
+
+      // Initialize RenJS lockAndMint.
+      const gateway = await renJS.gateway({
+        asset,
+        from: polygon.Contract({
+          // The contract we want to interact with
+          to: polygonBridgeExample.address,
+
+          // The name of the function we want to call
+          method: "withdraw",
+
+          // Specify that "deposit" requieres the amount, nHash and signature.
+          withRenParams: false,
+
+          // Arguments expected for calling `deposit`
+          params: [
+            { name: "asset", type: "string", value: asset },
+            {
+              name: "msg",
+              type: "bytes",
+              value: Buffer.from(`Withdrawing ${tokenAmount.toFixed()} ${asset}`),
+            },
+            {
+              name: "to",
+              type: "bytes",
+              value: EVMParam.EVM_TO_ADDRESS_BYTES,
+            },
+            { name: "amount", type: "uint256", value: satsAmount.toFixed() },
+          ],
+        }),
+        to: ethereum.Account(),
+        // If you change this to another chain, you also have to change the
+        // chain name passed to `gatewayFactory` above.
+      });
+
+      // Mock deposit. Currently must be passed in as a number.
+      // bitcoin.addUTXO(mint.gatewayAddress!, satsAmount.toNumber());
+
+      for (const setup of Object.values(gateway.inSetup)) {
+        if (setup.submit) {
+          await setup.submit();
+        }
+        await setup.wait();
+      }
+
+      const balanceBefore = await polygonBridgeExample.balance(asset);
+
+      if (gateway.in && gateway.in.submit) {
+        await gateway.in.submit();
+      }
+
+      await gateway.in?.wait(1);
+
+      // Process the deposit, including the mint step.
+      await new Promise<void>((resolve, reject) => {
+        gateway.on("transaction", async tx => {
+          try {
+            await tx.in.wait(0);
+
+            // Submit to mock RenVM
+            await tx.renVM.submit();
+            await tx.renVM.wait();
+
+            if (tx.out.submit) {
+              await tx.out.submit();
+            }
+            await tx.out.wait(0);
+
+            resolve();
+          } catch (error) {
+            console.error(error);
+            reject(error);
+          }
+        });
+      });
+
+      // Check that the balance of the contract increased by the expected amount.
+      const balanceAfter = await polygonBridgeExample.balance(asset);
+      const expected = gateway.fees.estimateOutput(satsAmount);
+
+      // TODO: Fix MockProvider fees for releasing
+      // expect(balanceBefore.sub(balanceAfter)).to.equal(expected.toFixed());
     });
   });
 });
