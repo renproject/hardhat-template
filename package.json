@@ -15,10 +15,10 @@
     "@nomiclabs/hardhat-etherscan": "^2.1.7",
     "@nomiclabs/hardhat-ganache": "^2.0.1",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "@renproject/chains-ethereum": "^2.5.10-1",
-    "@renproject/mock-provider": "^2.5.10-1",
-    "@renproject/ren": "^2.5.10-1",
-    "@renproject/rpc": "^2.5.10-1",
+    "@renproject/chains-ethereum": "^3.0.0-alpha.21",
+    "@renproject/mock-provider": "^3.0.0-alpha.21",
+    "@renproject/ren": "^3.0.0-alpha.21",
+    "@renproject/provider": "^3.0.0-alpha.21",
     "@typechain/ethers-v5": "^8.0.2",
     "@typechain/hardhat": "^3.0.0",
     "@types/chai": "^4.2.22",
@@ -45,7 +45,7 @@
     "@ethersproject/bignumber": "^5.3.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.3.2",
-    "@renproject/gateway-sol": "^1.0.10"
+    "@openzeppelin/contracts": "^4.3.3",
+    "@renproject/gateway-sol": "^2.0.2"
   }
 }

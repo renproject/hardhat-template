@@ -13,348 +13,465 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "Context",
+      name: "AccessControlEnumerableUpgradeable",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Context__factory>;
+    ): Promise<Contracts.AccessControlEnumerableUpgradeable__factory>;
     getContractFactory(
-      name: "GSNRecipient",
+      name: "AccessControlUpgradeable",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.GSNRecipient__factory>;
+    ): Promise<Contracts.AccessControlUpgradeable__factory>;
     getContractFactory(
-      name: "IRelayHub",
+      name: "IAccessControlEnumerableUpgradeable",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IRelayHub__factory>;
+    ): Promise<Contracts.IAccessControlEnumerableUpgradeable__factory>;
     getContractFactory(
-      name: "IRelayRecipient",
+      name: "IAccessControlUpgradeable",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IRelayRecipient__factory>;
+    ): Promise<Contracts.IAccessControlUpgradeable__factory>;
+    getContractFactory(
+      name: "OwnableUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.OwnableUpgradeable__factory>;
+    getContractFactory(
+      name: "ERC20Upgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20Upgradeable__factory>;
+    getContractFactory(
+      name: "IERC20MetadataUpgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20MetadataUpgradeable__factory>;
+    getContractFactory(
+      name: "IERC20Upgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Upgradeable__factory>;
+    getContractFactory(
+      name: "ERC165Upgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC165Upgradeable__factory>;
+    getContractFactory(
+      name: "IERC165Upgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC165Upgradeable__factory>;
+    getContractFactory(
+      name: "AccessControl",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AccessControl__factory>;
+    getContractFactory(
+      name: "IAccessControl",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IAccessControl__factory>;
     getContractFactory(
       name: "Ownable",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Ownable__factory>;
     getContractFactory(
-      name: "ERC20",
+      name: "IERC1822Proxiable",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC20__factory>;
+    ): Promise<Contracts.IERC1822Proxiable__factory>;
     getContractFactory(
-      name: "ERC20Detailed",
+      name: "IERC1271",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC20Detailed__factory>;
+    ): Promise<Contracts.IERC1271__factory>;
     getContractFactory(
-      name: "IERC20",
+      name: "BeaconProxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC20__factory>;
+    ): Promise<Contracts.BeaconProxy__factory>;
     getContractFactory(
-      name: "BaseAdminUpgradeabilityProxy",
+      name: "IBeacon",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BaseAdminUpgradeabilityProxy__factory>;
+    ): Promise<Contracts.IBeacon__factory>;
     getContractFactory(
-      name: "BaseUpgradeabilityProxy",
+      name: "UpgradeableBeacon",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BaseUpgradeabilityProxy__factory>;
+    ): Promise<Contracts.UpgradeableBeacon__factory>;
     getContractFactory(
-      name: "InitializableAdminUpgradeabilityProxy",
+      name: "ERC1967Proxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.InitializableAdminUpgradeabilityProxy__factory>;
+    ): Promise<Contracts.ERC1967Proxy__factory>;
     getContractFactory(
-      name: "InitializableUpgradeabilityProxy",
+      name: "ERC1967Upgrade",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.InitializableUpgradeabilityProxy__factory>;
+    ): Promise<Contracts.ERC1967Upgrade__factory>;
     getContractFactory(
       name: "Proxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Proxy__factory>;
     getContractFactory(
-      name: "UpgradeabilityProxy",
+      name: "TransparentUpgradeableProxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.UpgradeabilityProxy__factory>;
+    ): Promise<Contracts.TransparentUpgradeableProxy__factory>;
     getContractFactory(
-      name: "BasicAdapter",
+      name: "ERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BasicAdapter__factory>;
+    ): Promise<Contracts.ERC20__factory>;
     getContractFactory(
-      name: "ERC20WithPermit",
+      name: "IERC20Metadata",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC20WithPermit__factory>;
+    ): Promise<Contracts.IERC20Metadata__factory>;
     getContractFactory(
-      name: "ERC20WithRate",
+      name: "IERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC20WithRate__factory>;
+    ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
-      name: "GatewayFactory",
+      name: "ERC165",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.GatewayFactory__factory>;
+    ): Promise<Contracts.ERC165__factory>;
     getContractFactory(
-      name: "GatewayRegistry",
+      name: "IERC165",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.GatewayRegistry__factory>;
+    ): Promise<Contracts.IERC165__factory>;
     getContractFactory(
-      name: "IERC20Standard",
+      name: "BasicBridge",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC20Standard__factory>;
+    ): Promise<Contracts.BasicBridge__factory>;
     getContractFactory(
-      name: "IBurnGateway",
+      name: "GatewayRegistryGettersV2",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IBurnGateway__factory>;
+    ): Promise<Contracts.GatewayRegistryGettersV2__factory>;
     getContractFactory(
-      name: "IGateway",
+      name: "GatewayRegistryProxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IGateway__factory>;
+    ): Promise<Contracts.GatewayRegistryProxy__factory>;
     getContractFactory(
-      name: "IMintGateway",
+      name: "GatewayRegistryV2",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IMintGateway__factory>;
+    ): Promise<Contracts.GatewayRegistryV2__factory>;
     getContractFactory(
       name: "IGatewayRegistry",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IGatewayRegistry__factory>;
     getContractFactory(
-      name: "BCHGateway",
+      name: "LockGatewayProxyBeacon",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BCHGateway__factory>;
+    ): Promise<Contracts.LockGatewayProxyBeacon__factory>;
     getContractFactory(
-      name: "BTCGateway",
+      name: "MintGatewayProxyBeacon",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.BTCGateway__factory>;
+    ): Promise<Contracts.MintGatewayProxyBeacon__factory>;
     getContractFactory(
-      name: "MintGatewayLogicV1",
+      name: "ProxyBeacon",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MintGatewayLogicV1__factory>;
+    ): Promise<Contracts.ProxyBeacon__factory>;
     getContractFactory(
-      name: "MintGatewayStateV1",
+      name: "RenAssetProxyBeacon",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MintGatewayStateV1__factory>;
+    ): Promise<Contracts.RenAssetProxyBeacon__factory>;
     getContractFactory(
-      name: "ZECGateway",
+      name: "RenAssetFactory",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ZECGateway__factory>;
+    ): Promise<Contracts.RenAssetFactory__factory>;
     getContractFactory(
-      name: "MintGatewayLogicV2",
+      name: "GatewayStateManagerV3",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MintGatewayLogicV2__factory>;
+    ): Promise<Contracts.GatewayStateManagerV3__factory>;
     getContractFactory(
-      name: "MintGatewayProxy",
+      name: "ILockGateway",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MintGatewayProxy__factory>;
+    ): Promise<Contracts.ILockGateway__factory>;
     getContractFactory(
-      name: "MintGatewayStateV2",
+      name: "IMintGateway",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MintGatewayStateV2__factory>;
+    ): Promise<Contracts.IMintGateway__factory>;
     getContractFactory(
-      name: "RenERC20LogicV1",
+      name: "LockGatewayV3",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.RenERC20LogicV1__factory>;
+    ): Promise<Contracts.LockGatewayV3__factory>;
     getContractFactory(
-      name: "RenERC20Proxy",
+      name: "MintGatewayV3",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.RenERC20Proxy__factory>;
+    ): Promise<Contracts.MintGatewayV3__factory>;
     getContractFactory(
-      name: "Claimable",
+      name: "IRenVMSignatureVerifier",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Claimable__factory>;
+    ): Promise<Contracts.IRenVMSignatureVerifier__factory>;
     getContractFactory(
-      name: "CanReclaimTokens",
+      name: "RenVMSignatureVerifierProxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.CanReclaimTokens__factory>;
+    ): Promise<Contracts.RenVMSignatureVerifierProxy__factory>;
     getContractFactory(
-      name: "LinkedList",
+      name: "RenVMSignatureVerifierV1",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LinkedList__factory>;
+    ): Promise<Contracts.RenVMSignatureVerifierV1__factory>;
+    getContractFactory(
+      name: "ERC20WithPermit",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20WithPermit__factory>;
+    getContractFactory(
+      name: "RenAssetV2",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.RenAssetV2__factory>;
+    getContractFactory(
+      name: "TestToken",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TestToken__factory>;
+    getContractFactory(
+      name: "TransferWithLog",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TransferWithLog__factory>;
     getContractFactory(
       name: "Adapter",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Adapter__factory>;
+    getContractFactory(
+      name: "BridgeExample",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.BridgeExample__factory>;
 
     getContractAt(
-      name: "Context",
+      name: "AccessControlEnumerableUpgradeable",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Context>;
+    ): Promise<Contracts.AccessControlEnumerableUpgradeable>;
     getContractAt(
-      name: "GSNRecipient",
+      name: "AccessControlUpgradeable",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.GSNRecipient>;
+    ): Promise<Contracts.AccessControlUpgradeable>;
     getContractAt(
-      name: "IRelayHub",
+      name: "IAccessControlEnumerableUpgradeable",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IRelayHub>;
+    ): Promise<Contracts.IAccessControlEnumerableUpgradeable>;
     getContractAt(
-      name: "IRelayRecipient",
+      name: "IAccessControlUpgradeable",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IRelayRecipient>;
+    ): Promise<Contracts.IAccessControlUpgradeable>;
+    getContractAt(
+      name: "OwnableUpgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.OwnableUpgradeable>;
+    getContractAt(
+      name: "ERC20Upgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20Upgradeable>;
+    getContractAt(
+      name: "IERC20MetadataUpgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20MetadataUpgradeable>;
+    getContractAt(
+      name: "IERC20Upgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Upgradeable>;
+    getContractAt(
+      name: "ERC165Upgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC165Upgradeable>;
+    getContractAt(
+      name: "IERC165Upgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC165Upgradeable>;
+    getContractAt(
+      name: "AccessControl",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AccessControl>;
+    getContractAt(
+      name: "IAccessControl",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IAccessControl>;
     getContractAt(
       name: "Ownable",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.Ownable>;
     getContractAt(
-      name: "ERC20",
+      name: "IERC1822Proxiable",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC20>;
+    ): Promise<Contracts.IERC1822Proxiable>;
     getContractAt(
-      name: "ERC20Detailed",
+      name: "IERC1271",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC20Detailed>;
+    ): Promise<Contracts.IERC1271>;
     getContractAt(
-      name: "IERC20",
+      name: "BeaconProxy",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC20>;
+    ): Promise<Contracts.BeaconProxy>;
     getContractAt(
-      name: "BaseAdminUpgradeabilityProxy",
+      name: "IBeacon",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.BaseAdminUpgradeabilityProxy>;
+    ): Promise<Contracts.IBeacon>;
     getContractAt(
-      name: "BaseUpgradeabilityProxy",
+      name: "UpgradeableBeacon",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.BaseUpgradeabilityProxy>;
+    ): Promise<Contracts.UpgradeableBeacon>;
     getContractAt(
-      name: "InitializableAdminUpgradeabilityProxy",
+      name: "ERC1967Proxy",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.InitializableAdminUpgradeabilityProxy>;
+    ): Promise<Contracts.ERC1967Proxy>;
     getContractAt(
-      name: "InitializableUpgradeabilityProxy",
+      name: "ERC1967Upgrade",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.InitializableUpgradeabilityProxy>;
+    ): Promise<Contracts.ERC1967Upgrade>;
     getContractAt(
       name: "Proxy",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.Proxy>;
     getContractAt(
-      name: "UpgradeabilityProxy",
+      name: "TransparentUpgradeableProxy",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.UpgradeabilityProxy>;
+    ): Promise<Contracts.TransparentUpgradeableProxy>;
     getContractAt(
-      name: "BasicAdapter",
+      name: "ERC20",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.BasicAdapter>;
+    ): Promise<Contracts.ERC20>;
     getContractAt(
-      name: "ERC20WithPermit",
+      name: "IERC20Metadata",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC20WithPermit>;
+    ): Promise<Contracts.IERC20Metadata>;
     getContractAt(
-      name: "ERC20WithRate",
+      name: "IERC20",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ERC20WithRate>;
+    ): Promise<Contracts.IERC20>;
     getContractAt(
-      name: "GatewayFactory",
+      name: "ERC165",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.GatewayFactory>;
+    ): Promise<Contracts.ERC165>;
     getContractAt(
-      name: "GatewayRegistry",
+      name: "IERC165",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.GatewayRegistry>;
+    ): Promise<Contracts.IERC165>;
     getContractAt(
-      name: "IERC20Standard",
+      name: "BasicBridge",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC20Standard>;
+    ): Promise<Contracts.BasicBridge>;
     getContractAt(
-      name: "IBurnGateway",
+      name: "GatewayRegistryGettersV2",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IBurnGateway>;
+    ): Promise<Contracts.GatewayRegistryGettersV2>;
     getContractAt(
-      name: "IGateway",
+      name: "GatewayRegistryProxy",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IGateway>;
+    ): Promise<Contracts.GatewayRegistryProxy>;
     getContractAt(
-      name: "IMintGateway",
+      name: "GatewayRegistryV2",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IMintGateway>;
+    ): Promise<Contracts.GatewayRegistryV2>;
     getContractAt(
       name: "IGatewayRegistry",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IGatewayRegistry>;
     getContractAt(
-      name: "BCHGateway",
+      name: "LockGatewayProxyBeacon",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.BCHGateway>;
+    ): Promise<Contracts.LockGatewayProxyBeacon>;
     getContractAt(
-      name: "BTCGateway",
+      name: "MintGatewayProxyBeacon",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.BTCGateway>;
+    ): Promise<Contracts.MintGatewayProxyBeacon>;
     getContractAt(
-      name: "MintGatewayLogicV1",
+      name: "ProxyBeacon",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MintGatewayLogicV1>;
+    ): Promise<Contracts.ProxyBeacon>;
     getContractAt(
-      name: "MintGatewayStateV1",
+      name: "RenAssetProxyBeacon",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MintGatewayStateV1>;
+    ): Promise<Contracts.RenAssetProxyBeacon>;
     getContractAt(
-      name: "ZECGateway",
+      name: "RenAssetFactory",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ZECGateway>;
+    ): Promise<Contracts.RenAssetFactory>;
     getContractAt(
-      name: "MintGatewayLogicV2",
+      name: "GatewayStateManagerV3",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MintGatewayLogicV2>;
+    ): Promise<Contracts.GatewayStateManagerV3>;
     getContractAt(
-      name: "MintGatewayProxy",
+      name: "ILockGateway",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MintGatewayProxy>;
+    ): Promise<Contracts.ILockGateway>;
     getContractAt(
-      name: "MintGatewayStateV2",
+      name: "IMintGateway",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.MintGatewayStateV2>;
+    ): Promise<Contracts.IMintGateway>;
     getContractAt(
-      name: "RenERC20LogicV1",
+      name: "LockGatewayV3",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.RenERC20LogicV1>;
+    ): Promise<Contracts.LockGatewayV3>;
     getContractAt(
-      name: "RenERC20Proxy",
+      name: "MintGatewayV3",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.RenERC20Proxy>;
+    ): Promise<Contracts.MintGatewayV3>;
     getContractAt(
-      name: "Claimable",
+      name: "IRenVMSignatureVerifier",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Claimable>;
+    ): Promise<Contracts.IRenVMSignatureVerifier>;
     getContractAt(
-      name: "CanReclaimTokens",
+      name: "RenVMSignatureVerifierProxy",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.CanReclaimTokens>;
+    ): Promise<Contracts.RenVMSignatureVerifierProxy>;
     getContractAt(
-      name: "LinkedList",
+      name: "RenVMSignatureVerifierV1",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.LinkedList>;
+    ): Promise<Contracts.RenVMSignatureVerifierV1>;
+    getContractAt(
+      name: "ERC20WithPermit",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20WithPermit>;
+    getContractAt(
+      name: "RenAssetV2",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.RenAssetV2>;
+    getContractAt(
+      name: "TestToken",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TestToken>;
+    getContractAt(
+      name: "TransferWithLog",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TransferWithLog>;
     getContractAt(
       name: "Adapter",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.Adapter>;
+    getContractAt(
+      name: "BridgeExample",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.BridgeExample>;
 
     // default types
     getContractFactory(
